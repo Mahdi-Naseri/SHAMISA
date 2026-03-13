@@ -1,0 +1,358 @@
+experiment_name: shamisa_run
+device: 0
+seed: 27
+data_base_path: data_base_path
+plcc_logistic: false
+
+enable_metrics_over_time: false
+metrics_eval_interval_steps:
+metrics_eval_datasets: all
+metrics_eval_trials:
+metrics_eval_save_raw_trials: false
+metrics_eval_dtype: float32
+metrics_eval_save_every: 1
+metrics_eval_compute_H: true
+metrics_eval_compute_Z: true
+
+training:
+  epochs: 10
+  max_steps:
+  cache_save_max_batches:
+  lr: 0.0015
+  batch_size: 16
+  num_workers: 8
+  worker_cpu_threads:
+  pin_memory: true
+  persistent_workers: true
+  prefetch_factor: 4
+  log_images_frequency: 10000
+  resume_training: false
+  loop_break: false
+
+  data:
+    shuffle: true
+    patch_size: 224
+    max_distortions: 7
+    num_levels: 5
+    pristine_prob: 0.05
+    distortion_pipeline: shamisa
+    n_refs: 3
+    n_dist_comps: 4
+    n_dist_comp_levels: 5
+    extended_int_distortions: true
+    severity_discrete: false
+    severity_dist: gaussian
+    fixed_order: false
+    cache_path: data_base_path/cache
+    cache_mode: na
+    cache_save_epoch:
+    cache_load_max_avail_epoch:
+    cache_load_mode: mmap
+    no_cache_opt_variant: variant_b
+
+  optimizer:
+    name: SGD
+    momentum: 0.9
+    weight_decay: 0.0001
+
+  lr_scheduler:
+    name: CosineAnnealingWarmRestarts
+    T_0: 1
+    T_mult: 2
+    eta_min: 0.000001
+
+  test: true
+  hp_eval:
+    enabled: false
+    num_points: 5
+    schedule: linspace_20_100
+    fractions: []
+    datasets: []
+    num_splits:
+    fast_mode: true
+    fast_mode_strategy: budget
+    fast_mode_budget: 0.4
+    fast_mode_feature_ratio:
+    fast_mode_alpha_points:
+    fast_mode_reduce_eval_splits:
+    fast_mode_alpha_cache_enabled:
+    fast_mode_cache_fallback_strategy:
+    grid_search:
+    alpha:
+    log_wandb: true
+    hp_name: ""
+    hp_value:
+
+benchmark:
+  enabled: false
+  warmup_steps: 20
+  benchmark_steps: 0
+  max_duration_minutes:
+  stop_after_benchmark: true
+  sync_cuda: true
+  run_label:
+  csv_path:
+  summary_path:
+
+validation:
+  frequency: 1
+  skip_phase: false
+  num_splits: 10
+  grid_search: false
+  alpha: 0.1
+  fast_mode: true
+  fast_mode_strategy: budget
+  fast_mode_budget: 0.4
+  fast_mode_feature_ratio: 0.35
+  fast_mode_alpha_points: 24
+  fast_mode_alpha_min: 0.01
+  fast_mode_alpha_max: 100.0
+  fast_mode_reduce_eval_splits: true
+  fast_mode_eval_budget:
+  fast_mode_alpha_cache_enabled: false
+  fast_mode_cache_fallback_strategy: budget
+  fast_mode_alpha_cache_path: results/alpha_cache/alpha_cache.json
+  fast_mode_n_jobs: 8
+  visualize: false
+  visualization:
+    tsne:
+      n_components: 2
+      perplexity: 30
+      n_iter: 1000
+    umap:
+      n_components: 2
+      n_neighbors: 25
+      min_dist: 0.2
+      metric: euclidean
+  datasets:
+    - live
+    - csiq
+    - tid2013
+    - kadid10k
+    - flive
+    - spaq
+  cross_eval:
+    enabled: true
+    train_datasets:
+      - live
+      - csiq
+      - tid2013
+      - kadid10k
+    test_datasets:
+      - live
+      - csiq
+      - tid2013
+      - kadid10k
+    grid_search:
+    alpha:
+    fast_mode: true
+    fast_mode_strategy: budget
+    fast_mode_budget: 0.4
+    fast_mode_feature_ratio: 0.35
+    fast_mode_alpha_points: 24
+    fast_mode_alpha_min: 0.01
+    fast_mode_alpha_max: 100.0
+    fast_mode_alpha_cache_enabled: false
+    fast_mode_cache_fallback_strategy: budget
+    fast_mode_alpha_cache_path: results/alpha_cache/alpha_cache.json
+    fast_mode_n_jobs: 8
+
+test:
+  batch_size: 16
+  num_workers: 8
+  num_splits: 10
+  grid_search: true
+  alpha: 0.1
+  crop_size: 224
+  datasets:
+    - live
+    - csiq
+    - tid2013
+    - kadid10k
+    - flive
+    - spaq
+  cross_eval:
+    enabled: true
+    include_standard: true
+    train_datasets:
+      - live
+      - csiq
+      - tid2013
+      - kadid10k
+    test_datasets:
+      - live
+      - csiq
+      - tid2013
+      - kadid10k
+    grid_search:
+    alpha:
+    fast_mode: true
+    fast_mode_strategy: budget
+    fast_mode_budget: 0.4
+    fast_mode_feature_ratio: 0.35
+    fast_mode_alpha_points: 24
+    fast_mode_alpha_min: 0.01
+    fast_mode_alpha_max: 100.0
+    fast_mode_reduce_eval_splits: false
+    fast_mode_eval_budget:
+    fast_mode_alpha_cache_enabled: true
+    fast_mode_cache_fallback_strategy: budget
+    fast_mode_alpha_cache_path: results/alpha_cache/alpha_cache.json
+    fast_mode_n_jobs: 8
+  debug_mode: false
+  fast_mode: true
+  fast_mode_strategy: budget
+  fast_mode_budget: 0.4
+  fast_mode_feature_ratio: 0.35
+  fast_mode_alpha_points: 24
+  fast_mode_alpha_min: 0.01
+  fast_mode_alpha_max: 100.0
+  fast_mode_reduce_eval_splits: false
+  fast_mode_eval_budget:
+  fast_mode_alpha_cache_enabled: true
+  fast_mode_cache_fallback_strategy: budget
+  fast_mode_alpha_cache_path: results/alpha_cache/alpha_cache.json
+  fast_mode_n_jobs: 8
+
+viz:
+  save_engine_examples_enabled: false
+  save_engine_examples_output_dir: engine_examples
+  save_engine_examples_max_batches: 15
+  save_engine_examples_per_batch: 4
+  early_stop_after_examples: false
+  save_engine_examples_only: false
+  save_engine_examples_save_pair_concat: true
+  save_engine_examples_write_jsonl: true
+
+model:
+  method: vicreg
+  temperature: 0.1
+  encoder:
+    embedding_dim: 256
+    pretrained: true
+    use_norm_rep: true
+    use_norm_emb: false
+  projector:
+    out_dim: 768
+    hidden_dim: 3072
+  single_view_var_cov: false
+
+  coeff:
+    var: 11.975680785304435
+    inv: 88.36882206311276
+    cov: 57.21249573027589
+
+  relations:
+    active: true
+    pair_metric: euc
+    symmetric: true
+    soft_afgrl: true
+    include_knn_residual: true
+    distortion_curve: exponential
+
+    weighting:
+      active: true
+      mode: mlp
+      stop_grad: true
+      log_once: false
+      num_layers: 2
+      hidden_scale: 2
+      dropout: 0.0
+      act: prelu
+      act_first: false
+      norm: layer_norm
+      plain_last: true
+      bias: true
+
+    regularizer:
+      active: true
+      mode: neg_sum_sq
+      coeff: 0.03419084992354765
+
+    branches:
+      distortion_structural:
+        active: true
+        kind: metadata
+        relation: structural
+        coeff: 0.6010794863656556
+        topk:
+        symmetric: true
+        soft_entries: true
+        multiply_by_knn: false
+
+      distortion_ref_dist:
+        active: true
+        kind: metadata
+        relation: ref_dist
+        coeff: 0.8038735892351129
+        topk:
+        symmetric: true
+        soft_entries: true
+        multiply_by_knn: false
+
+      distortion_ref_ref:
+        active: true
+        kind: metadata
+        relation: ref_ref
+        coeff: 0.5765695739376243
+        topk:
+        symmetric: true
+        soft_entries: true
+        multiply_by_knn: false
+
+      distortion_dist_dist:
+        active: true
+        kind: metadata
+        relation: dist_dist
+        coeff: 0.1789641360878255
+        topk: 4096
+        symmetric: true
+        soft_entries: true
+        multiply_by_knn: false
+
+      feature_knn:
+        active: true
+        kind: knn
+        source: rep
+        coeff: 0.20874201442160423
+        k: 31
+        metric: euc
+        include_self: false
+        symmetric: true
+        soft_entries: true
+
+      feature_transport:
+        active: true
+        kind: transport
+        source: rep
+        coeff: 0.3670314792148166
+        symmetric: true
+        soft_entries: true
+        multiply_by_knn: false
+        transport:
+          n_prototypes: 32
+          prototype_norm: false
+          weight_norm: true
+          source_norm: true
+          temp: 0.1
+          sinkhorn_iters: 6
+          eps: 0.05
+          g_alignment: ce
+          g_norm: min_max
+          g_norm_temp: 0.2
+          g_sparse: topk_global
+          g_sparse_threshold: 0.1
+          g_sparse_k: 8
+          pq_alignment: aug_self
+          pq_alignment_coeff: 0.49057801093072007
+          prots_var_norm: false
+          prots_var_coeff: 0.0
+          prots_cov_coeff: 0.0
+
+logging:
+  use_wandb: false
+  wandb:
+    online: false
+    project: shamisa
+    entity:
+    imgs: false

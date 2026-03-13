@@ -1,0 +1,22 @@
+# torch 
+# torchvision 
+# torchtext 
+# torchaudio
+pandas
+matplotlib
+pyyaml
+dotmap
+tqdm
+wandb
+einops
+openpyxl
+scikit-learn
+scipy
+kornia
+plotly
+umap-learn
+tensorflow 
+timm
+torch-geometric 
+torchmetrics 
+pykeops

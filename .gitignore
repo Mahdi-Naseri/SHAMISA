@@ -1,0 +1,62 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+
+# Build and packaging artifacts
+build/
+dist/
+*.egg-info/
+
+# Generic runtime artifacts
+*.out
+*.pid
+*.tmp
+*.log
+
+# Local data/checkpoint/log outputs
+cache/
+data_base_path
+data_base_path/
+experiments/
+wandb/
+logs/
+.smoke/
+
+# Generated results artifacts
+results/**/*.png
+results/**/*.jpg
+results/**/*.jpeg
+results/**/*.bmp
+results/**/*.tif
+results/**/*.tiff
+results/**/*.webp
+results/**/*.gif
+results/**/*.npz
+results/**/*.npy
+results/**/*.pkl
+results/**/*.pt
+results/**/*.json
+
+# Local environment snapshots and scratch bundles
+env_snapshot/
+paper_gitignore/
+
+# Project-local non-source files
+main.py.lprof
+kernprof.log

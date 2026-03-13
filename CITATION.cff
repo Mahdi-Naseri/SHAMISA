@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+title: "SHAMISA: SHAped Modeling of Implicit Structural Associations for Self-supervised No-Reference Image Quality Assessment"
+message: "If you use SHAMISA, please cite this work."
+type: software
+authors:
+  - family-names: Naseri
+    given-names: Mahdi
+    email: mahdi.naseri@uwaterloo.ca
+    affiliation: University of Waterloo
+  - family-names: Wang
+    given-names: Zhou
+    email: zhou.wang@uwaterloo.ca
+    affiliation: University of Waterloo
+year: 2026
+license: CC-BY-NC-4.0
