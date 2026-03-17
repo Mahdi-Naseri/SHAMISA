@@ -4,7 +4,7 @@
 
 SHAMISA is a non-contrastive self-supervised framework for no-reference image quality assessment.
 
-Paper: `https://arxiv.org/abs/2603.13669`
+[Paper](https://arxiv.org/abs/2603.13669) | [Repository](https://github.com/Mahdi-Naseri/SHAMISA)
 
 ## Abstract
 
