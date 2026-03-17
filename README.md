@@ -4,6 +4,8 @@
 
 SHAMISA is a non-contrastive self-supervised framework for no-reference image quality assessment.
 
+Paper: `https://arxiv.org/abs/2603.13669`
+
 ## Abstract
 
 No-Reference Image Quality Assessment (NR-IQA) aims to estimate perceptual quality without access to a reference image of pristine quality. Learning an NR-IQA model faces a fundamental bottleneck: its need for a large number of costly human perceptual labels. We propose SHAMISA, a non-contrastive self-supervised framework that learns from unlabeled distorted images by leveraging explicitly structured relational supervision. Unlike prior methods that impose rigid, binary similarity constraints, SHAMISA introduces implicit structural associations, defined as soft, controllable relations that are both distortion-aware and content-sensitive, inferred from synthetic metadata and intrinsic feature structure. A key innovation is our compositional distortion engine, which generates an uncountable family of degradations from continuous parameter spaces, grouped so that only one distortion factor varies at a time. This enables fine-grained control over representational similarity during training: images with shared distortion patterns are pulled together in the embedding space, while severity variations produce structured, predictable shifts. We integrate these insights via dual-source relation graphs that encode both known degradation profiles and emergent structural affinities to guide the learning process throughout training. A convolutional encoder is trained under this supervision and then frozen for inference, with quality prediction performed by a linear regressor on its features. Extensive experiments on synthetic, authentic, and cross-dataset NR-IQA benchmarks demonstrate that SHAMISA achieves strong overall performance with improved cross-dataset generalization and robustness, all without human annotations or contrastive losses.
@@ -175,11 +177,17 @@ This repository is based on the ARNIQA source code and retains the required attr
 
 ## Citation
 
+If you use SHAMISA in your research, please cite the paper:
+
 ```bibtex
-@misc{naseri2026shamisa,
+@misc{naseri2026shamisashapedmodelingimplicit,
   title={SHAMISA: SHAped Modeling of Implicit Structural Associations for Self-supervised No-Reference Image Quality Assessment},
   author={Mahdi Naseri and Zhou Wang},
-  year={2026}
+  year={2026},
+  eprint={2603.13669},
+  archivePrefix={arXiv},
+  primaryClass={cs.CV},
+  url={https://arxiv.org/abs/2603.13669}
 }
 ```
 
